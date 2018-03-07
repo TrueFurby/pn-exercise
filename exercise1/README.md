@@ -6,7 +6,7 @@ Retrieve weather data directly through API.
 ```sh
 export OPENWEATHER_API_KEY="xxxxx"
 export CITY_NAME="Bratislava"
-go run main.go
+go run getweather.go
 ```
 
 ### Ansible
