@@ -1,0 +1,19 @@
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: install repository key
+      apt_key:
+        keyserver: keyserver.ubuntu.com
+        id: 0EBFCD88
+
+    - name: add docker registry
+      apt_repository: repo='deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable' state=present
+
+    - name: install docker
+      apt: name=docker-ce update_cache=yes
+
+    - name: copy config file
+      copy: src=daemon.json dest=/etc/docker/daemon.json backup=yes
+
+    - service: name=docker state=restarted
